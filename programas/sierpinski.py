@@ -55,7 +55,8 @@ def sierpinski(nsim=1000,numlados=3,radio=1):
     #Por eso grafico el punto interior inicial
     #Por alguna razon funciona con x=uniform!!
     #puntoInterior = [uniform(0,1),triangular(0,.5,1)]
-    puntoInterior = [0,0]
+    puntoInterior = puntoMedio(vertices[randint(0,len(vertices)-1)],\
+     vertices[randint(0,len(vertices)-1)])
     pylab.plot(puntoInterior[0],puntoInterior[1],'m.',markersize=10)
 
     # Crea la grafica
