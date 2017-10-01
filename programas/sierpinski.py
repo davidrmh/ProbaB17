@@ -5,7 +5,7 @@ from random import randint
 from numpy.random import triangular, uniform
 
 
-def puntoMedio(p1, p2,numlados):
+def puntoMedio(p1, p2,factor):
     ''' Calcula el punto medio entre dos puntos
 
     Input:
@@ -14,7 +14,7 @@ def puntoMedio(p1, p2,numlados):
     Output:
     Lista [xmedio,ymedio]
     '''
-    return [(p1[0] + p2[0])/(numlados-1), (p1[1] + p2[1])/(numlados-1)]
+    return [(p1[0] + p2[0])*factor, (p1[1] + p2[1])*factor]
 
 def creaVertices(numPuntos=3,radio=1):
     '''Obtiene los vertices de un poligono regular
@@ -36,7 +36,7 @@ def creaVertices(numPuntos=3,radio=1):
     return vertices
 
 
-def sierpinski(nsim=1000,numlados=3,radio=1):
+def sierpinski(nsim=1000,numlados=3,factor=0.4,radio=1):
     '''Obtiene el poligono de Sierpinski simulando nsim veces
     Input:
     nsim: Numero de simulaciones
@@ -56,14 +56,14 @@ def sierpinski(nsim=1000,numlados=3,radio=1):
     #Por alguna razon funciona con x=uniform!!
     #puntoInterior = [uniform(0,1),triangular(0,.5,1)]
     puntoInterior = puntoMedio(vertices[randint(0,len(vertices)-1)],\
-     vertices[randint(0,len(vertices)-1)],numlados)
+     vertices[randint(0,len(vertices)-1)],factor)
     pylab.plot(puntoInterior[0],puntoInterior[1],'m.',markersize=10)
 
     # Crea la grafica
     for i in range(nsim):
 
         dado = randint(0,len(vertices)-1)
-        puntoInterior = puntoMedio(puntoInterior, vertices[dado],numlados)
+        puntoInterior = puntoMedio(puntoInterior, vertices[dado],factor)
         pylab.plot(puntoInterior[0],puntoInterior[1],'r.',markersize=3)
 
     pylab.show()
