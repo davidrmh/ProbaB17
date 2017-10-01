@@ -48,6 +48,7 @@ def sierpinski(nsim=1000,numlados=3,factor=0.4,radio=1):
 
     #Vertices del poligono
     vertices=creaVertices(numlados,radio)
+    datos=[[],[]]
 
     #Elige un punto dentro del poligono
     #(De esta parte no estoy muy seguro sobre x=uniform)
@@ -57,13 +58,13 @@ def sierpinski(nsim=1000,numlados=3,factor=0.4,radio=1):
     #puntoInterior = [uniform(0,1),triangular(0,.5,1)]
     puntoInterior = puntoMedio(vertices[randint(0,len(vertices)-1)],\
      vertices[randint(0,len(vertices)-1)],factor)
-    pylab.plot(puntoInterior[0],puntoInterior[1],'m.',markersize=10)
-
+   
     # Crea la grafica
     for i in range(nsim):
 
         dado = randint(0,len(vertices)-1)
         puntoInterior = puntoMedio(puntoInterior, vertices[dado],factor)
-        pylab.plot(puntoInterior[0],puntoInterior[1],'r.',markersize=3)
-
+        datos[0].append(puntoInterior[0])
+        datos[1].append(puntoInterior[1])
+    pylab.plot(datos[0],datos[1],'r.',markersize=3)
     pylab.show()
