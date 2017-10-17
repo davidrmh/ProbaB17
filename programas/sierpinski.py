@@ -47,7 +47,10 @@ def sierpinski(nsim=1000,numlados=3,factor=0.4,radio=1):
     '''
 
     #Vertices del poligono
-    vertices=creaVertices(numlados,radio)
+    if(isinstance(numlados,int)):
+     vertices=creaVertices(numlados,radio)
+    else:
+     vertices=numlados
     datos=[[],[]]
 
     #Elige un punto dentro del poligono
